@@ -1,18 +1,27 @@
 // Enemies our player must avoid
+const BLOCK_HEIGHT= 83, BLOCK_WIDTH= 101;
+
+var Character= function(x, y){
+  this.x= x;
+  this.y= y;
+}
+
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
+    Character.call(this, x, y);
     this.sprite = 'images/enemy-bug.png';
-    this.x= x;
-    this.y= y;
     this.speed= speed;
 };
 
+Enemy.prototype= Object.create(Character.prototype);
+
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
+
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -35,16 +44,17 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
-var Player = function() {
+var Player = function(x,y) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
+    Character.call(this, x, y);
     this.sprite = 'images/char-boy.png';
-    this.x= 202;
-    this.y= 405;
 };
+
+Player.prototype= Object.create(Character.prototype);
 
 Player.prototype.update=function(dt){
   //will add score feature later
@@ -55,37 +65,37 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput= function(key){
-  if(key==='left' && this.x>=101){
-    this.x-=101;
+  if(key==='left' && this.x>=BLOCK_WIDTH){
+    this.x-=BLOCK_WIDTH;
   }
 
   if(key==='right' && this.x<404){
-    this.x+=101;
+    this.x+=BLOCK_WIDTH;
   }
 
   if(key==='up' && this.y>=73){
-    this.y-=83;
+    this.y-=BLOCK_HEIGHT;
   }
 
   if(key==='down' && this.y<405){
-    this.y+=83;
+    this.y+=BLOCK_HEIGHT;
   }
 
   if(this.y<0){
-    player.reset();
+    this.reset();
   }
 };
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var player= new Player();
+var player= new Player(202, 405);
 
 var allEnemies= [];
 
 var enemyPosition = [65, 148, 231];
 
 enemyPosition.forEach(function(posY) {
-    enemy = new Enemy(101, posY, 100 + Math.floor(Math.random() * 300));
+    enemy = new Enemy(BLOCK_WIDTH, posY, 100 + Math.floor(Math.random() * 300));
     allEnemies.push(enemy);
 });
 
