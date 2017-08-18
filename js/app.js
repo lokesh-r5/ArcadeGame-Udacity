@@ -4,7 +4,7 @@ const BLOCK_HEIGHT= 83, BLOCK_WIDTH= 101;
 var Character= function(x, y){
   this.x= x;
   this.y= y;
-}
+};
 
 var Enemy = function(x, y, speed) {
     // Variables applied to each of our instances go here,
