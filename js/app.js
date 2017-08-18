@@ -18,7 +18,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x+=this.speed*dt;
-    if(this.y===player.y && player.x-this.x<101 && this.x-player.x<49){
+    if(this.y===player.y-8 && player.x<this.x+101 && player.x+61<this.x){
       console.log("sfd");
       player.reset();
     }
@@ -43,7 +43,7 @@ var Player = function() {
     // a helper we've provided to easily load images
     this.sprite = 'images/char-boy.png';
     this.x= 202;
-    this.y= 415;
+    this.y= 405;
 };
 
 Player.prototype.update=function(){
@@ -68,7 +68,7 @@ Player.prototype.handleInput= function(key){
   }
 
   if(key==='up'){
-    if(this.y>=83){
+    if(this.y>=73){
       this.y-=83;
     }
   }
@@ -79,7 +79,7 @@ Player.prototype.handleInput= function(key){
     }
   }
 
-  if(this.y===0){
+  if(this.y<0){
     player.reset();
   }
 };
@@ -90,10 +90,10 @@ var player= new Player();
 
 var allEnemies= [];
 
-var enemyPosition = [83, 166, 249];
+var enemyPosition = [65, 148, 231];
 
 enemyPosition.forEach(function(posY) {
-    enemy = new Enemy(0, posY, 100 + Math.floor(Math.random() * 300));
+    enemy = new Enemy(101, posY, 100 + Math.floor(Math.random() * 300));
     allEnemies.push(enemy);
 });
 
@@ -112,5 +112,5 @@ document.addEventListener('keyup', function(e) {
 
 player.reset= function(){
   player.x= 202;
-  player.y= 415;
+  player.y= 405;
 };
