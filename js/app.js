@@ -46,8 +46,8 @@ var Player = function() {
     this.y= 405;
 };
 
-Player.prototype.update=function(){
-
+Player.prototype.update=function(dt){
+  //will add score feature later
 };
 
 Player.prototype.render = function() {
@@ -55,28 +55,20 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput= function(key){
-  if(key==='left'){
-    if(this.x>=101){
-      this.x-=101;
-    }
+  if(key==='left' && this.x>=101){
+    this.x-=101;
   }
 
-  if(key==='right'){
-    if(this.x<404){
-      this.x+=101;
-    }
+  if(key==='right' && this.x<404){
+    this.x+=101;
   }
 
-  if(key==='up'){
-    if(this.y>=73){
-      this.y-=83;
-    }
+  if(key==='up' && this.y>=73){
+    this.y-=83;
   }
 
-  if(key==='down'){
-    if(this.y<415){
-      this.y+=83;
-    }
+  if(key==='down' && this.y<405){
+    this.y+=83;
   }
 
   if(this.y<0){
