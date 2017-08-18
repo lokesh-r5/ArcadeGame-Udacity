@@ -18,7 +18,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x+=this.speed*dt;
-    if(this.y===player.y-8 && player.x<this.x+101 && player.x+61<this.x){
+    if(this.y===player.y-8 && player.x<this.x+79 && player.x+79>this.x){
       console.log("sfd");
       player.reset();
     }
